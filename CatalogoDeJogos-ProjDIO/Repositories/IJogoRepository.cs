@@ -14,6 +14,5 @@ namespace CatalogoDeJogos_ProjDIO.Repositores
         Task Inserir(Jogo jogo);
         Task Atualizar(Jogo jogo);
         Task Remover(Guid id);
-        Task Inserir(object jogoInsert);
     }
 }

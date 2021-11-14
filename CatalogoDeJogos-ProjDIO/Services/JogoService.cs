@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace CatalogoDeJogos_ProjDIO.Services
 {
-    public class JogoService
+    public class JogoService : IJogoService
     {
         private readonly IJogoRepository _jogoRepository;
 
