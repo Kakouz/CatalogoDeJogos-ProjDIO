@@ -46,9 +46,18 @@ namespace CatalogoDeJogos_ProjDIO.Controllers.V1
 
         // Inserir um jogo dentro da listagem
         [HttpPost]
-        public async Task<ActionResult<JogoViewModel>> InserirJogo(JogoInputModel jogo)
+        public async Task<ActionResult<JogoViewModel>> InserirJogo([FromBody]JogoInputModel jogoInputModel)
         {
-            return Ok();
+            try
+            {
+                var jogo = await _jogoService.Inserir(jogoInputModel);
+                return Ok();
+            }
+           // catch (JogoJaCadastradoException ex)
+              catch (Exception ex)
+            {
+                return UnprocessableEntity("Já existe um jogo com este nome para esta produtora");
+            }
         }
 
         // Atualizar algum jogo passando o id do jogo
