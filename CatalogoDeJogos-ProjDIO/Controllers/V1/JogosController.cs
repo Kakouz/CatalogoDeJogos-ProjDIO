@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using CatalogoDeJogos_ProjDIO.InputModels;
+using CatalogoDeJogos_ProjDIO.ViewModels;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -13,28 +15,28 @@ namespace CatalogoDeJogos_ProjDIO.Controllers.V1
     {
         // Obter a lista de jogos completo
         [HttpGet]
-        public async Task<ActionResult<List<object>>> Obter()
+        public async Task<ActionResult<List<JogoViewModel>>> Obter()
         {
             return Ok();
         }
 
         // Obter a lista recebendo um id do jogo com parametro
         [HttpGet("(idJogo:guid)")]
-        public async Task<ActionResult<object>> Obter(Guid idJogo)
+        public async Task<ActionResult<JogoViewModel>> Obter(Guid idJogo)
         {
             return Ok();
         }
 
         // Inserir um jogo dentro da listagem
         [HttpPost]
-        public async Task<ActionResult<object>> InserirJogo(object jogo)
+        public async Task<ActionResult<JogoViewModel>> InserirJogo(JogoInputModel jogo)
         {
             return Ok();
         }
 
         // Atualizar algum jogo passando o id do jogo
         [HttpPut("(idJogo:guid)")]
-        public async Task<ActionResult> AtualizarJogo(Guid idJogo, object jogo)
+        public async Task<ActionResult> AtualizarJogo(Guid idJogo, JogoInputModel jogo)
         {
             return Ok();
         }
