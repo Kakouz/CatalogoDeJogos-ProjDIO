@@ -17,5 +17,6 @@ namespace CatalogoDeJogos_ProjDIO.InputModels
         [Required]
         [Range(1, 1000, ErrorMessage = "O preço deve ser no mínimo 1 real e no maximo 1000 reais")]
         public double preco { get; set; }
+        public double Preco { get; internal set; }
     }
 }
