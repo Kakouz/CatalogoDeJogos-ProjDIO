@@ -94,9 +94,18 @@ namespace CatalogoDeJogos_ProjDIO.Controllers.V1
 
         // Apagar um jogo da listagem
         [HttpDelete("(idJogo:guid)")]
-        public async Task<ActionResult> ApagarJogo(Guid idJogo)
+        public async Task<ActionResult> ApagarJogo([FromRoute] Guid idJogo)
         {
-            return Ok();
+            try
+            {
+                await _jogoService.Remover(idJogo);
+                return Ok();
+            }
+            // catch (JogoNaoCadastradoException ex)
+               catch (Exception ex)
+            {
+                return NotFound("Não existe este jogo");
+            }
         }
     }
 }
