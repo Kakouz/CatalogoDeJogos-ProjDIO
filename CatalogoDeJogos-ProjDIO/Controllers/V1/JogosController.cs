@@ -78,9 +78,18 @@ namespace CatalogoDeJogos_ProjDIO.Controllers.V1
 
         // Atualizar o preço do jogo pelo id
         [HttpPatch("(idJogo:guid)/preco/(preco:double)")]
-        public async Task<ActionResult> AtualizarPreco(Guid idJogo, double preco)
+        public async Task<ActionResult> AtualizarJogo([FromRoute] Guid idJogo, [FromRoute] double preco)
         {
-            return Ok();
+            try
+            {
+                await _jogoService.Atualizar(idJogo, preco);
+                return Ok();
+            }
+           // catch (JogoNaoCadastradoException ex)
+              catch (Exception ex)
+            {
+                return NotFound("Não existe este jogo");
+            }
         }
 
         // Apagar um jogo da listagem
