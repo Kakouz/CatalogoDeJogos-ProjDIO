@@ -62,9 +62,18 @@ namespace CatalogoDeJogos_ProjDIO.Controllers.V1
 
         // Atualizar algum jogo passando o id do jogo
         [HttpPut("(idJogo:guid)")]
-        public async Task<ActionResult> AtualizarJogo(Guid idJogo, JogoInputModel jogo)
+        public async Task<ActionResult> AtualizarJogo([FromRoute] Guid idJogo, [FromBody] JogoInputModel jogoInputModel)
         {
-            return Ok();
+            try
+            {
+                await _jogoService.Atualizar(idJogo, jogoInputModel);
+                return Ok();
+            }
+            // catch (JogoNaoCadastradoException ex)
+            catch (Exception ex)
+            {
+                return NotFound("Não existe este jogo");
+            }
         }
 
         // Atualizar o preço do jogo pelo id
