@@ -34,8 +34,13 @@ namespace CatalogoDeJogos_ProjDIO.Controllers.V1
 
         // Obter a lista recebendo um id do jogo com parametro
         [HttpGet("(idJogo:guid)")]
-        public async Task<ActionResult<JogoViewModel>> Obter(Guid idJogo)
+        public async Task<ActionResult<JogoViewModel>> Obter([FromRoute] Guid idJogo)
         {
+            var jogo = await _jogoService.Obter(idJogo);
+
+            if (jogo == null)
+                return NoContent();
+
             return Ok();
         }
 
